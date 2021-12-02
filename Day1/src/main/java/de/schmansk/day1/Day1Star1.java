@@ -1,20 +1,14 @@
 package de.schmansk.day1;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
+import de.schmansk.FileTools;
+
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Day1Star1 {
+
+    private final FileTools fileTools = new FileTools();
 
     public int countIt(int[] lines){
         //read file
@@ -34,16 +28,4 @@ public class Day1Star1 {
             );
         return amountOfIncrease.get();
     }
-    public int[] buildList(Path inputFilePath) {
-
-        int[] result = new int[0];
-        try (Stream<String> lines = Files.lines(inputFilePath, Charset.defaultCharset())) {
-            result = lines.map(Integer::parseInt).mapToInt(x -> x).toArray();
-
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
 }

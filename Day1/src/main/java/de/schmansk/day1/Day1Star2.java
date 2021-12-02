@@ -1,5 +1,7 @@
 package de.schmansk.day1;
 
+import de.schmansk.FileTools;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -12,12 +14,7 @@ public class Day1Star2 {
     public int doSomething(Path inputFilePath) {
         //read file
         List<Integer> numbers = new ArrayList<>();
-        int[] allLinesAsInt = new int[0];
-        try (Stream<String> lines = Files.lines(inputFilePath, Charset.defaultCharset())) {
-            allLinesAsInt = lines.map(Integer::parseInt).mapToInt(x -> x).toArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        int[] allLinesAsInt = FileTools.readIntsFileLineByLineToArray(inputFilePath);
         int[] windows = buildWindows(allLinesAsInt);
 
         Day1Star1 firstStar = new Day1Star1();
