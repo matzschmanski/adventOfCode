@@ -13,7 +13,6 @@ import java.util.stream.Stream;
 public class Day1Star2 {
     public int doSomething(Path inputFilePath) {
         //read file
-        List<Integer> numbers = new ArrayList<>();
         int[] allLinesAsInt = FileTools.readIntsFileLineByLineToArray(inputFilePath);
         int[] windows = buildWindows(allLinesAsInt);
 
@@ -25,31 +24,6 @@ public class Day1Star2 {
 
     public int[] buildWindows(int[] numbers){
     List<Integer> values = new ArrayList<>();
-//            i , i+1 ,i+2 == A
-//            i+1, i+2, i+3 == B
-//            i+2, i+3, i+4 == C
-//            i+4, i+5, i+6 == D
-//            199  A
-//            200  A B
-//            208  A B C
-//            210    B C D
-//            200  E   C D
-//            207  E F   D
-//            240  E F G
-//            269    F G H
-//            260      G H
-//            263        H
-
-//            199  A
-//            200  A  B
-//            208  A  B  C
-//            210     B  C  D
-//            200  A1    C  D
-//            207  A1 B1    D
-//            240  A1 B1 C1
-//            269     B1 C1 D1
-//            260        C1 D1
-//            263           D1
         int handledLines =0;
         for (int i = 0; i < numbers.length-4; i=i+4) {
             int a = numbers[i]+numbers[i+1]+numbers[i+2];
