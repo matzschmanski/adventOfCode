@@ -1,3 +1,5 @@
+package de.schmansk.day1;
+
 import org.junit.Test;
 
 import java.net.URISyntaxException;
@@ -9,9 +11,9 @@ public class Day1Star2Spec {
     public void testInput() throws URISyntaxException {
 
         //test
-//        URL resource = Day1Star2.class.getResource("/input");
+//        URL resource = de.schmansk.day1.Day1Star2.class.getResource("/input");
         //input
-        URL resource = Day1Star2.class.getResource("/real_input");
+        URL resource = Day1Star2.class.getResource("/day1_real_input");
 
         Day1Star2 clazz = new Day1Star2();
 

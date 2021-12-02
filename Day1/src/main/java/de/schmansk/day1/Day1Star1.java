@@ -1,3 +1,5 @@
+package de.schmansk.day1;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
