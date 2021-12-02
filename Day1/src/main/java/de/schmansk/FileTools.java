@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class FileTools {
@@ -20,5 +22,14 @@ public class FileTools {
             e.printStackTrace();
         }
         return result;
+    }
+    public static String[] readFileLineByLineToArray(Path inputFilePath) {
+        List<String> strings = Collections.emptyList();
+        try {
+            strings = Files.readAllLines(inputFilePath, Charset.defaultCharset());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return strings.toArray(new String[0]);
     }
 }
