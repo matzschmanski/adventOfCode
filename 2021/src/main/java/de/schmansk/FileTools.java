@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
@@ -31,5 +32,13 @@ public class FileTools {
             e.printStackTrace();
         }
         return strings.toArray(new String[0]);
+    }
+
+    public static String[] readFileLineByLineToArrayStartWithLine(Path inputFilePath, int startLine) {
+        String[] lineByLine = readFileLineByLineToArray(inputFilePath);
+        String[] copied = Arrays.copyOfRange(lineByLine, startLine, lineByLine.length);
+        return copied;
+
+
     }
 }
