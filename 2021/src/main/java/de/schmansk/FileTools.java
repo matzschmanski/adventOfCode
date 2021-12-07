@@ -7,10 +7,23 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileTools {
     public FileTools() {
+    }
+
+    public static String[] readFileLineByLine(Path inputFilePath) {
+        Charset charset = Charset.defaultCharset();
+        List<String> stringList = null;
+        try {
+            stringList = Files.readAllLines(inputFilePath, charset);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringList.toArray(new String[]{});
     }
 
     public static int[] readIntsFileLineByLineToArray(Path inputFilePath) {
