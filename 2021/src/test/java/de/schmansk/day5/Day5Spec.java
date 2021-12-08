@@ -33,8 +33,8 @@ public class Day5Spec {
     public void starOne() throws URISyntaxException {
 
         //test
-//        URL resource = Day5.class.getResource("/day5_input");
-        URL resource = Day5.class.getResource("/day5_real_input");
+        URL resource = Day5.class.getResource("/day5_input");
+//        URL resource = Day5.class.getResource("/day5_real_input");
 
         Day5 clazz = new Day5();
 

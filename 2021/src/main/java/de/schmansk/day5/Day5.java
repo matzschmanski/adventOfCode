@@ -7,7 +7,7 @@ import java.nio.file.Path;
 public class Day5 {
 
     public int countDemHydrothermalVentsBwonsandi(Path pathToInput) {
-        int[][] base = new int[1000][1000];
+        int[][] base = new int[10][10];
         String[] strings = FileTools.readFileLineByLine(pathToInput);
         for (int i = 0; i < strings.length; i++) {
             int[][] newPoints = handleLine(strings[i]);

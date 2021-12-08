@@ -34,8 +34,7 @@ public class Day6 {
             fish = temporaryFishes.toArray(Integer[]::new);
             System.out.println();
         }
-        long count = Arrays.stream(fish).count();
-        return count;
+        return Arrays.stream(fish).count();
     }
 
 
