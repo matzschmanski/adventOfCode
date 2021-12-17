@@ -1,6 +1,6 @@
-package de.schmansk.day8;
+package de.schmansk.day10;
 
-import de.schmansk.day7.Day7;
+import de.schmansk.day9.Day9;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,16 +9,16 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class Day8Spec {
+public class Day10Spec {
 
     @Test
     public void starOne() throws URISyntaxException {
 
         //test
-//        URL resource = Day8.class.getResource("/day8_input");
-        URL resource = Day8.class.getResource("/day8_real_input");
+//        URL resource = Day9.class.getResource("/day10_input");
+        URL resource = Day9.class.getResource("/day10_real_input");
 
-        Day8 clazz = new Day8();
+        Day10 clazz = new Day10();
 
         Path path = Paths.get(resource.toURI());
         long i = clazz.starOne(path);

@@ -54,4 +54,17 @@ public class FileTools {
 
 
     }
+
+    public static Integer[][] readIntoMatrix(Path inputFilePath, String charToSplit){
+        String splitter = charToSplit;
+        if("".equals(splitter)){
+            splitter="(?<=[0-9])";
+        }
+        String[] lineByLine= readFileLineByLineToArray(inputFilePath);
+        Integer[][] array = new Integer[lineByLine.length][lineByLine[0].split(splitter).length];
+        for (int i = 0; i <lineByLine.length ; i++) {
+            array[i] = Arrays.stream(lineByLine[i].split(splitter)).map(String::trim).mapToInt(Integer::valueOf).boxed().toArray(Integer[]::new);
+        }
+        return array;
+    }
 }
