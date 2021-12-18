@@ -72,6 +72,47 @@ public class Day12 {
 
         }
 
+        public int countInRoute(Node node,List<String> currentRoute){
+            int numCount = 0;
+
+            for (String targetNodeName : currentRoute) {
+                if (node.getName().equals(targetNodeName)) numCount++;
+            }
+
+            return numCount;
+        }
+
+        public boolean isAnyLowerCaseElementTwiceInRoute(List<String> currentRoute){
+            for (int i = 0; i <currentRoute.size() ; i++) {
+                String location = currentRoute.get(i);
+                int count =1;
+                for (int j = i+1; j < currentRoute.size(); j++) {
+                    String secondLocation = currentRoute.get(j);
+                    if(location.equals(secondLocation) && isStringLowerCase(location)){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private boolean canConnect(Node from, Node to,List<String> currentRoute){
+            if (to.getName().equals("start") || to.getName().equals("end")){
+                if(currentRoute.contains(to.getName())){
+                    return false;
+                }
+            } else if (
+                    currentRoute.contains(to.getName()) &&
+                            isStringLowerCase(to.getName()) &&
+//                            countInRoute(to,currentRoute)>1 &&
+                            isAnyLowerCaseElementTwiceInRoute(currentRoute)) {
+                return false;
+                //das ist any nicht nur einer darf zwei mal
+
+            }
+            return true;
+        }
+
         public List<String> followConnections(Node currentNode, List<String> currentRoute, List<String> foundRoutes) {
             currentRoute.add(currentNode.getName());
 //            visitCount.put(currentNode.getName(), visitCount.getOrDefault(currentNode.getName(), 0) + 1);
@@ -83,9 +124,7 @@ public class Day12 {
                 //filter connections that are lowercase and were visited already
                 for (Iterator<Node> iter = connectionsTo.iterator(); iter.hasNext(); ) {
                     Node node = iter.next();
-                    if (
-                            currentRoute.contains(node.getName()) &&
-                                    isStringLowerCase(node.getName())) {
+                    if (!canConnect(currentNode,node, currentRoute)) {
                         iter.remove();
                     }
                 }
