@@ -5,18 +5,32 @@ import util.StringTools;
 
 import java.util.*;
 
-public class Graph {
+public abstract class Graph {
     Node start;
     Node end;
     List<Node> allNodes;
 
+    private boolean onlyShortestRoute;
+    private Integer shortestRouteLength;
     public Graph(Node start, Node end, List<Node> allNodes) {
         this.allNodes = allNodes;
         this.end = end;
         this.start = start;
+        this.onlyShortestRoute=false;
+        this.shortestRouteLength=-1;
     }
 
-    public void findRoutes() {
+    public boolean isOnlyShortestRoute() {
+        return onlyShortestRoute;
+    }
+
+    public void setOnlyShortestRoute(boolean onlyShortestRoute) {
+        this.onlyShortestRoute = onlyShortestRoute;
+    }
+
+    public abstract Integer determineRouteLength(List<String> currentRoute);
+
+    public List<String> findRoutes() {
         List<String> currentRoute = new ArrayList<>();
         currentRoute.add(start.getName());
         List<Node> connectionsTo = new ArrayList<>(start.getConnectionsTo());
@@ -28,6 +42,7 @@ public class Graph {
             foundRoutes = followConnections(node, newRoute, foundRoutes);
         }
         System.out.println("done");
+        return foundRoutes;
 
     }
 
@@ -55,29 +70,23 @@ public class Graph {
         return false;
     }
 
-    private boolean canConnect(Node from, Node to, List<String> currentRoute){
-        if (to.getName().equals("start") || to.getName().equals("end")){
-            if(currentRoute.contains(to.getName())){
-                return false;
-            }
-        } else if (
-                currentRoute.contains(to.getName()) &&
-                        StringTools.isStringLowerCase(to.getName()) &&
-//                            countInRoute(to,currentRoute)>1 &&
-                        isAnyLowerCaseElementTwiceInRoute(currentRoute)) {
-            return false;
-            //das ist any nicht nur einer darf zwei mal
-
-        }
-        return true;
-    }
+    public abstract boolean canConnect(Node from, Node to, List<String> currentRoute);
 
     public List<String> followConnections(Node currentNode, List<String> currentRoute, List<String> foundRoutes) {
         currentRoute.add(currentNode.getName());
 //            visitCount.put(currentNode.getName(), visitCount.getOrDefault(currentNode.getName(), 0) + 1);
-        if ("end".equals(currentNode.getName())) {
-            foundRoutes.add(currentRoute.toString());
-            System.out.println(currentRoute);
+        if (end.getName().equals(currentNode.getName())) {
+            if (onlyShortestRoute) {
+                Integer integer = determineRouteLength(currentRoute);
+                if(integer<shortestRouteLength || shortestRouteLength==-1){
+                    System.out.println("new champ" + integer);
+                    foundRoutes = new ArrayList<>();
+                    foundRoutes.add(currentRoute.toString());
+                    shortestRouteLength = integer;
+                }
+            }else{
+                foundRoutes.add(currentRoute.toString());
+            }
         } else {
             List<Node> connectionsTo = new ArrayList<>(currentNode.getConnectionsTo());
             //filter connections that are lowercase and were visited already
@@ -95,6 +104,14 @@ public class Graph {
         return foundRoutes;
 
 
+    }
+
+    public Node getStart() {
+        return start;
+    }
+
+    public Node getEnd() {
+        return end;
     }
 
     public void addNode(Node nodeToAdd) {

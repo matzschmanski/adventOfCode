@@ -7,6 +7,8 @@ public class Node {
     String name;
     List<Node> connectionsTo;
 
+    int someValue;
+
     public Node(String name) {
         this.connectionsTo = new ArrayList<>();
         this.name = name;
@@ -23,6 +25,14 @@ public class Node {
 
     public List<Node> getConnectionsTo() {
         return this.connectionsTo;
+    }
+
+    public int getSomeValue() {
+        return someValue;
+    }
+
+    public void setSomeValue(int someValue) {
+        this.someValue = someValue;
     }
 
     @Override
