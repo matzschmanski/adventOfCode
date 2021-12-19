@@ -15,8 +15,8 @@ public class Day15Spec {
     public void starOne() throws URISyntaxException {
 
         //test
-        URL resource = Day15.class.getResource("/day15_input");
-//        URL resource = Day15.class.getResource("/day15_real_input");
+//        URL resource = Day15.class.getResource("/day15_input");
+        URL resource = Day15.class.getResource("/day15_real_input");
 
         Day15 clazz = new Day15();
 
