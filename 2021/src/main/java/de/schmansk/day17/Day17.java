@@ -34,6 +34,12 @@ public class Day17 {
                 maxKey= entry.getKey();
             }
         }
+        int iniC=0;
+        for (var entry : values.entrySet()) {
+            for(Integer distinct : entry.getValue()){
+                iniC++;
+            }
+        }
         int i = values.get(maxKey).stream().mapToInt(v -> v)
                 .max().orElseThrow(NoSuchElementException::new);
 
