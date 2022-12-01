@@ -196,6 +196,24 @@ private HashMap<Integer,String> findFive(HashMap<Integer,String> currentValues){
 
     return currentValues;
 }
+    private HashMap<Integer,String> findNine(HashMap<Integer,String> currentValues, String suspectedNines){
+//        9-4 = länge 2
+        //0-4 = länge 3
+        String s = currentValues.get(-1);
+        String[] split = s.split(",");
+        String[] split1 = suspectedNines.split("");
+        for (int i = 0; i < split.length; i++) {
+            String wordToRemoveFrom = split[i];
+
+            if(wordToRemoveFrom.contains(split1[0]) || wordToRemoveFrom.contains(split1[1])) {
+                String s1 = removeWords(wordToRemoveFrom, currentValues.get(4));
+                System.out.println(s1);
+            }
+
+        }
+        return currentValues;
+    }
+
     private HashMap<Integer,String> findThree(HashMap<Integer,String> currentValues){
         // 3 has length 5
         // as do 2 and 5
@@ -214,24 +232,6 @@ private HashMap<Integer,String> findFive(HashMap<Integer,String> currentValues){
             }
         }
 
-        return currentValues;
-    }
-
-    private HashMap<Integer,String> findNine(HashMap<Integer,String> currentValues, String suspectedNines){
-//        9-4 = länge 2
-            //0-4 = länge 3
-        String s = currentValues.get(-1);
-        String[] split = s.split(",");
-        String[] split1 = suspectedNines.split("");
-        for (int i = 0; i < split.length; i++) {
-            String wordToRemoveFrom = split[i];
-
-            if(wordToRemoveFrom.contains(split1[0]) || wordToRemoveFrom.contains(split1[1])) {
-                String s1 = removeWords(wordToRemoveFrom, currentValues.get(4));
-                System.out.println(s1);
-            }
-
-        }
         return currentValues;
     }
 

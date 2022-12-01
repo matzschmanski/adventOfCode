@@ -1,7 +1,5 @@
 package de.schmansk.day2;
 
-import de.schmansk.FileTools;
-
 import java.nio.file.Path;
 import java.util.concurrent.atomic.AtomicInteger;
 
