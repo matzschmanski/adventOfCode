@@ -13,41 +13,43 @@ input.split(/\r?\n/).forEach(line =>  {
 
   /**
    * A for Rock, B for Paper, and C for Scissors.
-   * X for Rock, Y for Paper, and Z for Scissors.
+   * X means you need to lose, 
+   * Y means you need to end the round in a draw, 
+   * and Z means you need to win. Good luck!"
    * 1 for Rock, 2 for Paper, and 3 for Scissors) plus the score for the outcome of the round 
    * (0 if you lost, 3 if the round was a draw, and 6 if you won)
    */
 
   function calculateMatchPoints(inputElv, inputPlayer){
     const ROCK_ELV = "A";
-const PAPER_ELV = "B";
-const SCISSORS_ELV = "C";
-const ROCK_PLAYER = "X";
-const PAPER_PLAYER = "Y";
+    const SCISSORS_ELV = "C";
+    const PAPER_ELV = "B";
+    const DRAW = "Y";
+    const LOOSE = "X";
     if(ROCK_ELV === inputElv){
-        if(ROCK_PLAYER === inputPlayer){
-            return 4;
-        }else if (PAPER_PLAYER === inputPlayer){
-            return 8;
-        }else {
+        if(LOOSE === inputPlayer){
             return 3;
+        }else if (DRAW === inputPlayer){
+            return 4;
+        }else {
+            return 8;
         }
     }else if(PAPER_ELV === inputElv){
-        if(ROCK_PLAYER === inputPlayer){
+        if(LOOSE === inputPlayer){
             return 1;
-        }else if (PAPER_PLAYER === inputPlayer){
+        }else if (DRAW === inputPlayer){
             return 5;
         }else {
             return 9;
         }
 
     }else if (SCISSORS_ELV === inputElv){
-        if(ROCK_PLAYER === inputPlayer){
-            return 7;
-        }else if (PAPER_PLAYER === inputPlayer){
+        if(LOOSE === inputPlayer){
             return 2;
-        }else {
+        }else if (DRAW === inputPlayer){
             return 6;
+        }else {
+            return 7;
         }
     }
   }
