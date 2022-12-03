@@ -5,29 +5,24 @@ var input = readFile('/Users/geig006/Development/projects/priv/adventOfCode/2022
 var charsLower ='abcdefghijklmnopqrstuvwxyz';
 var charsUpper ='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var inBoth =[];
-input.split(/\r?\n/).forEach(line =>  {
 
-    const middle = line.length / 2;
-    const firstCompartment = line.substring(0,middle).split('');
-    const secondCompartment = line.substring(middle).split('');
-    // console.log('middle',middle);
-    // console.log('firstCompartment',firstCompartment);
-    // console.log('secondCompartment',secondCompartment);
-    
-    var dieZeile = [];
-    for (var i = 0; i < firstCompartment.length; i++) { 
-        if(secondCompartment.includes(firstCompartment[i])){
-            if(dieZeile.indexOf(firstCompartment[i]) === -1){
-             dieZeile.push(firstCompartment[i]); 
-             inBoth.push(firstCompartment[i])
-            }
+var input = input.split(/\r?\n/);
 
-        }
+
+
+while( input.length>0){
+    const firstCompartment = input[0].split('');
+const secondCompartment = input[1].split('');
+const thirdCompartment = input[2].split('');
+for (var i = 0; i < firstCompartment.length; i++) { 
+    if(secondCompartment.includes(firstCompartment[i])&& thirdCompartment.includes(firstCompartment[i])){
+         inBoth.push(firstCompartment[i]);
+         break;
     }
-    //highest.push(calculateMatchPoints(lineValues[0],lineValues[1]))
-  });
-  console.log('inBoth',inBoth);
-
+}
+console.log(input.length);
+input= input.slice(3);
+}
   var sum =0;
   for (var i = 0; i < inBoth.length; i++) { 
   if(inBoth[i] == inBoth[i].toUpperCase()){
