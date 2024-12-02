@@ -1,4 +1,4 @@
-import {readTxtFileLines} from '../snippets/read_input';
+import { readTxtFileLines } from '../snippets/read_input';
 
 
 
@@ -9,8 +9,11 @@ export const main = (): string => {
 
     // rule 1 all increase and value is okay
     for (var i = 0; i < input.length; i++) {
-        if(check_rules(input[i])) {
+        if (isSafe(input[i])) {
+            console.log(input[i] + ' is safe');
             safe_count++;
+        }else{
+            console.log(input[i] + ' is not safe');
         }
     }
 
@@ -18,38 +21,38 @@ export const main = (): string => {
 
     return safe_count.toString();
 }
-// function check_rules(level_report: string): boolean {
-//     var level_report_split = level_report.split(' ');
-//     var state = null;
-    
-//     for (var i = 0; i < level_report_split.length-1; i++) {
-//         var curr = parseInt(level_report_split[i]);
-//         var prev = parseInt(level_report_split[i + 1]);
-//         var difference = curr - prev;
-//         if(state == null) {
-//             if(difference > 0) {
-//                 state = 'DESC';
-//             }else if(difference < 0) {
-//                 state = 'ASC';
-//             }
-//         }
-//         if(difference > 2 || difference < -2) {
-//             console.log('report: ' + level_report_split + ' is unsafe (diff) ' + state+ ' diff: '+ difference);
-//             return false;
-//         }
-//         if(difference <= 2 && difference >0 && state == 'ASC') {
-//             console.log('report: ' + level_report_split + ' is unsafe (state) ASC ' + state + ' diff: '+ difference);
-//             return false;
-//         }
 
-//         if(difference <= -2 && difference<0 && state == 'DESC') {
-//             console.log('report: ' + level_report_split + ' is unsafe (state) DESC ' + state + ' diff: '+ difference);
-//             return false;
-//         }
-//     }
-//     console.log('report: ' + level_report_split + ' is safe ' + state);
-//     return true;
-// }
+function isSafe(level_report: string): boolean {
+    if (isAlwayIncreasing(level_report) || isAlwaysDecreasing(level_report)) {
+        return true;
+    }
+    return false;
+}
 
- 
+function isAlwayIncreasing(level_report: string): boolean {
+    var level_report_split = level_report.split(' ').map(Number);
+    for (var i = 1; i < level_report_split.length; i++) {
+        if(level_report_split[i] == level_report_split[i - 1]){
+            return false;
+        }
+        if (level_report_split[i] <= level_report_split[i - 1] || (level_report_split[i] - level_report_split[i - 1]) > 3) {
+            return false;
+        }
+    }
+    return true;
+}
+function isAlwaysDecreasing(level_report: string): boolean {
+    var level_report_split = level_report.split(' ').map(Number);
+    for (var i = 1; i < level_report_split.length; i++) {
+        if(level_report_split[i] == level_report_split[i - 1]){
+            return false;
+        }
+        if (level_report_split[i] >= level_report_split[i - 1] || (level_report_split[i - 1] - level_report_split[i]) > 3) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
 console.log(main());
