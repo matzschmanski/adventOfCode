@@ -1,4 +1,4 @@
-import {readTxtFileLines} from './snippets/read_input';
+import {readTxtFileLines} from '../snippets/read_input';
 
 
 
